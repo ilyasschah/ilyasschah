@@ -1,21 +1,48 @@
-/* Basic body and font styles */
+/* ==========================================================================
+   Global Connect-inspired light corporate theme
+   Palette: navy #22398e, sky blue #82cde2, bright blue #3452ff,
+            white #ffffff, light grey #ebeced, dark text #2b2b2b
+   ========================================================================== */
+
+:root {
+  --gc-navy: #22398e;
+  --gc-sky: #82cde2;
+  --gc-blue: #3452ff;
+  --gc-white: #ffffff;
+  --gc-grey-bg: #ebeced;
+  --gc-text: #2b2b2b;
+  --gc-text-muted: #5a5f6d;
+}
+
 body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", "Montserrat", sans-serif;
+}
+
+body.w3-black {
+  background-color: var(--gc-white) !important;
+  /* w3.css's .w3-black utility sets color:#fff !important - must out-specificity it,
+     otherwise any plain text with no color override (e.g. job/education descriptions)
+     inherits invisible white-on-white text. */
+  color: var(--gc-text) !important;
 }
 
 .w3-row-padding img {
   margin-bottom: 12px;
 }
 
-/* Main content margin for desktop */
+/* Main content (no sidebar - full width) */
 #main {
-  margin-left: 120px;
+  margin-left: 0;
 }
 
-/* Sidebar styles */
-.w3-sidebar {
-  width: 120px;
-  background: #222;
+/* Hero / header */
+header.w3-black {
+  background-color: var(--gc-navy) !important;
+  color: var(--gc-white);
+}
+
+header .typewriter {
+  color: var(--gc-sky);
 }
 
 /* Profile Avatar styles */
@@ -25,21 +52,21 @@ body, h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   object-fit: cover;
   margin: 10px auto 20px;
-  border: 4px solid #444;
+  border: 4px solid var(--gc-sky);
   display: block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-avatar:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 25px #009688; /* Teal glow */
+  box-shadow: 0 0 25px var(--gc-sky);
 }
 
 /* Typewriter cursor effect */
 .typewriter::after {
   content: '|';
   animation: blink 1s step-end infinite;
-  color: #009688;
+  color: var(--gc-sky);
 }
 
 @keyframes blink {
@@ -47,21 +74,81 @@ body, h1, h2, h3, h4, h5, h6 {
   50% { opacity: 1; }
 }
 
+/* Section headings and body text on white background */
+.w3-text-light-grey {
+  color: var(--gc-navy) !important;
+}
+
+.w3-text-grey {
+  color: var(--gc-text-muted) !important;
+}
+
+.w3-text-teal {
+  color: var(--gc-blue) !important;
+}
+
+.w3-teal {
+  background-color: var(--gc-navy) !important;
+  color: var(--gc-white) !important;
+}
+
+hr.w3-opacity {
+  border: none;
+  border-top: 3px solid var(--gc-sky);
+  opacity: 1 !important;
+}
+
+/* w3.css dims text to 60% opacity by default - too low-contrast for
+   headings on a white background, and it fights with AOS's own
+   opacity transition (causes a flicker/"blink" on scroll reveal). */
+h5.w3-opacity {
+  opacity: 1 !important;
+  color: var(--gc-navy) !important;
+}
+
+/* Plain separator <hr> between experience/education entries */
+#experience hr:not(.w3-opacity),
+.section-alt hr:not(.w3-opacity) {
+  border: none;
+  border-top: 1px solid var(--gc-grey-bg);
+}
+
+/* Alternating section background for visual rhythm */
+.section-alt {
+  background-color: var(--gc-grey-bg);
+  border-radius: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Buttons */
+.w3-light-grey {
+  background-color: var(--gc-navy) !important;
+  color: var(--gc-white) !important;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.w3-light-grey:hover {
+  background-color: var(--gc-blue) !important;
+}
+
 /* Skill bar animation */
 .skill-bar {
-  background-color: #fff; /* The background of the bar */
+  background-color: var(--gc-grey-bg);
   border-radius: 14px;
 }
 .skill-bar-fill {
   height: 28px;
-  background-color: #616161; /* The fill color of the bar */
-  width: 0; /* Start at 0 width */
+  background-color: var(--gc-navy);
+  width: 0;
   border-radius: 14px;
-  transition: width 2s ease-out; /* Smooth transition for the width */
+  transition: width 2s ease-out;
 }
 .skill-bar-fill.animated {
   width: var(--skill-level);
 }
+
 /* Bullet skill list */
 .skills-list {
   list-style-type: disc;
@@ -82,64 +169,74 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 .tech-icon {
   font-size: 4rem;
-  color: #ccc;
+  color: var(--gc-navy);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .tech-icon:hover {
   transform: scale(1.2) translateY(-5px);
-  color: #009688; /* Teal accent */
+  color: var(--gc-blue);
 }
-
 
 /* Project Card styles */
 .project-card {
-  background: #333;
-  color: #f1f1f1;
+  background: var(--gc-white);
+  color: var(--gc-text);
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 24px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #444;
+  border: 1px solid var(--gc-grey-bg);
+  box-shadow: 0 2px 8px rgba(34, 57, 142, 0.08);
 }
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 20px rgba(34, 57, 142, 0.2);
 }
 .project-card .w3-container {
   padding: 16px;
-  background-color: #2a2a2a; /* Darker background for text */
+  background-color: var(--gc-white) !important;
 }
 .project-card h4 {
-  color: #fff;
+  color: var(--gc-navy);
 }
 .project-card p {
-    color: #ccc;
+  color: var(--gc-text-muted);
+}
+
+/* Contact section links */
+.contact-link {
+  color: var(--gc-navy);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.contact-link:hover {
+  color: var(--gc-blue);
 }
 
 /* AI Generator Section */
 #ai-generator .w3-input {
-    background-color: #333;
-    border: 1px solid #555;
-    color: #fff;
+    background-color: var(--gc-white);
+    border: 1px solid var(--gc-grey-bg);
+    color: var(--gc-text);
 }
 #generate-idea-btn {
     width: 100%;
 }
 #idea-result {
-    background-color: #2a2a2a !important;
-    border-left: 4px solid #009688;
+    background-color: var(--gc-grey-bg) !important;
+    border-left: 4px solid var(--gc-navy);
     padding: 16px;
-    color: #ccc;
+    color: var(--gc-text);
 }
 #idea-result h4 {
-    color: #009688;
+    color: var(--gc-navy);
 }
 
 /* Loading Spinner */
 .spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
+  border: 4px solid rgba(34, 57, 142, 0.15);
   border-radius: 50%;
-  border-top: 4px solid #009688;
+  border-top: 4px solid var(--gc-navy);
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
@@ -152,32 +249,8 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Hamburger menu styles */
-.w3-opennav {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  z-index: 10;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-}
-
 /* Responsive styles for mobile */
 @media only screen and (max-width: 600px) {
-  #main {
-    margin-left: 0;
-  }
-  .w3-sidebar.w3-hide-small {
-    display: none !important;
-  }
-  .w3-opennav {
-    display: block; /* Show hamburger */
-  }
-  .w3-top .w3-bar {
-    display: none; /* Hide original top nav */
-  }
   .profile-avatar {
     width: 150px;
     height: 150px;
@@ -185,40 +258,8 @@ body, h1, h2, h3, h4, h5, h6 {
   .w3-half {
     width: 100%;
   }
-}
-
-/* Mobile navigation panel */
-.mobile-nav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 11;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  text-align: center;
-}
-
-.mobile-nav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.mobile-nav a:hover {
-  color: #f1f1f1;
-}
-
-.mobile-nav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  .section-alt {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }

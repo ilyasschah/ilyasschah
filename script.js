@@ -1,24 +1,12 @@
-/**
- * Opens the mobile side navigation panel.
- */
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-/**
- * Closes the mobile side navigation panel.
- */
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-
 // Wait for the DOM to be fully loaded before running scripts
 document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize Animate on Scroll library
   AOS.init({
-    duration: 1000, // Animation duration in milliseconds
-    once: true,     // Whether animation should happen only once
+    duration: 900,        // Animation duration in milliseconds
+    easing: 'ease-out-cubic', // Smooth fade-in instead of an abrupt pop
+    offset: 80,
+    once: true,            // Whether animation should happen only once
   });
 
   // --- Typewriter effect for the header ---
